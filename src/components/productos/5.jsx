@@ -1,6 +1,6 @@
 import { useState } from "react";
-import "./5.css";
 
+import "./5.css";
 
 const Productos = () => {
   const [categoria, setCategoria] = useState("Empaquetados");
