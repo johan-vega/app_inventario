@@ -1,0 +1,238 @@
+.inventario-view {
+    min-height: 100%;
+}
+
+.inventario-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 20px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #565750 0%, #b7ec19 100%);
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(128, 165, 24, 0.18);
+}
+
+.inventario-banner__info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.inventario-banner__icon {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    border: 3px solid rgba(255, 255, 255, 0.92);
+}
+
+.inventario-banner__sheet {
+    position: absolute;
+    top: 9px;
+    left: 12px;
+    width: 18px;
+    height: 22px;
+    border-radius: 3px;
+    background: #ffffff;
+}
+
+.inventario-banner__sheet::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 4px;
+    width: 10px;
+    height: 7px;
+    border-radius: 2px 2px 0 0;
+    background: #ffffff;
+}
+
+.inventario-banner__check {
+    position: absolute;
+    right: 9px;
+    bottom: 11px;
+    width: 14px;
+    height: 8px;
+    border-left: 3px solid #ffffff;
+    border-bottom: 3px solid #ffffff;
+    transform: rotate(-45deg);
+}
+
+.inventario-banner h1 {
+    margin: 0 0 4px;
+    font-size: 2rem;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.inventario-banner p {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.inventario-banner__button {
+    border: none;
+    border-radius: 8px;
+    padding: 12px 18px;
+    background: #5d5d5d;
+    color: #ffffff;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.inventario-banner__button:hover {
+    transform: translateY(-1px);
+    background: #4a4a4a;
+}
+
+.inventario-table-card {
+    margin-top: 46px;
+    padding: 48px 36px 30px;
+    border-radius: 16px;
+    background: linear-gradient(180deg, #e5e5e5 0%, #ecebea 100%);
+}
+
+.inventario-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #545454;
+}
+
+.inventario-table th,
+.inventario-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid rgba(87, 87, 87, 0.25);
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.inventario-table th {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.inventario-table td:nth-child(2),
+.inventario-table td:nth-child(5) {
+    text-align: left;
+}
+
+.inventario-actions {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.inventario-actions__edit,
+.inventario-actions__delete,
+.inventario-form__save,
+.inventario-form__cancel {
+    border: none;
+    border-radius: 999px;
+    padding: 6px 12px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.inventario-actions__edit {
+    background: #7d9b3d;
+}
+
+.inventario-actions__delete {
+    background: #f0322f;
+}
+
+.inventario-actions__edit:hover,
+.inventario-actions__delete:hover,
+.inventario-form__save:hover,
+.inventario-form__cancel:hover {
+    filter: brightness(0.94);
+    transform: translateY(-1px);
+}
+
+.inventario-table__empty {
+    padding: 24px 12px;
+    color: #666666;
+}
+
+.inventario-modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(31, 31, 31, 0.55);
+    z-index: 20;
+}
+
+.inventario-form {
+    width: min(420px, calc(100vw - 32px));
+    display: grid;
+    gap: 12px;
+    padding: 24px;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
+}
+
+.inventario-form h2 {
+    margin: 0 0 6px;
+    color: #4d4d4d;
+}
+
+.inventario-form input,
+.inventario-form select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d1d1d1;
+    border-radius: 10px;
+    font-size: 0.95rem;
+}
+
+.inventario-form input:disabled {
+    background: #efefef;
+    color: #666666;
+}
+
+.inventario-form__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.inventario-form__save {
+    background: #7d9b3d;
+}
+
+.inventario-form__cancel {
+    background: #6b6b6b;
+}
+
+@media (max-width: 900px) {
+    .inventario-banner {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .inventario-banner__button {
+        width: 100%;
+    }
+
+    .inventario-table-card {
+        margin-top: 20px;
+        padding: 24px 18px;
+        overflow-x: auto;
+    }
+
+    .inventario-table {
+        min-width: 720px;
+    }
+}
