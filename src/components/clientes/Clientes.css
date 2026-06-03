@@ -216,3 +216,45 @@
     min-width: 760px;
   }
 }
+
+@media (max-width: 560px) {
+  .clientes-banner {
+    padding: 14px;
+  }
+
+  .clientes-banner__info {
+    align-items: flex-start;
+  }
+
+  .clientes-banner h1 {
+    font-size: 1.45rem;
+  }
+
+  .clientes-banner p {
+    font-size: 0.8rem;
+  }
+
+  .clientes-banner__button {
+    padding: 11px 14px;
+    font-size: 0.82rem;
+  }
+
+  .clientes-table-card {
+    padding: 14px 10px 12px;
+    border-radius: 14px;
+  }
+
+  .clientes-form {
+    width: min(100vw - 20px, 420px);
+    padding: 18px;
+  }
+
+  .clientes-form__actions {
+    flex-direction: column;
+  }
+
+  .clientes-form__save,
+  .clientes-form__cancel {
+    width: 100%;
+  }
+}

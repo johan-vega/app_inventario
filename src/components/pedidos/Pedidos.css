@@ -242,3 +242,45 @@
     min-width: 760px;
   }
 }
+
+@media (max-width: 560px) {
+  .pedidos-banner {
+    padding: 14px;
+  }
+
+  .pedidos-banner__info {
+    align-items: flex-start;
+  }
+
+  .pedidos-banner h1 {
+    font-size: 1.45rem;
+  }
+
+  .pedidos-banner p {
+    font-size: 0.8rem;
+  }
+
+  .pedidos-banner__button {
+    padding: 11px 14px;
+    font-size: 0.82rem;
+  }
+
+  .pedidos-table-card {
+    padding: 14px 10px 12px;
+    border-radius: 14px;
+  }
+
+  .pedidos-form {
+    width: min(100vw - 20px, 430px);
+    padding: 18px;
+  }
+
+  .pedidos-form__actions {
+    flex-direction: column;
+  }
+
+  .pedidos-form__save,
+  .pedidos-form__cancel {
+    width: 100%;
+  }
+}

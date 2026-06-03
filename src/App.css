@@ -1,5 +1,6 @@
 .app-view {
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .login-page {
@@ -29,6 +30,7 @@
 
 .login-card > [class*='col-'] {
   display: flex;
+  min-width: 0;
 }
 
 @media (max-width: 991.98px) {
@@ -41,12 +43,27 @@
   }
 }
 
+@media (max-width: 767.98px) {
+  .login-wrapper {
+    width: 100%;
+  }
+
+  .login-card {
+    border-radius: 20px;
+  }
+}
+
 @media (max-width: 575.98px) {
   .login-page {
     padding: 12px;
+    align-items: stretch;
   }
 
   .login-tag {
     font-size: 1.1rem;
+  }
+
+  .login-card {
+    border-radius: 18px;
   }
 }

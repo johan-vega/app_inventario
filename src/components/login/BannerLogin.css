@@ -77,5 +77,16 @@
 @media (max-width: 575.98px) {
   .banner-login-panel {
     padding: 2rem 1.25rem;
+    border-radius: 18px 18px 0 0;
+  }
+
+  .banner-login-logo {
+    width: min(82%, 280px);
+  }
+}
+
+@media (max-width: 420px) {
+  .banner-login-panel {
+    padding: 1.5rem 1rem;
   }
 }
