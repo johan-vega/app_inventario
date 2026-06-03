@@ -126,6 +126,7 @@
 @media (max-width: 575.98px) {
   .login-form-panel {
     padding: 2rem 1.25rem;
+    border-radius: 0 0 18px 18px;
   }
 
   .login-form-content {
@@ -147,5 +148,24 @@
 
   .login-form-submit-button {
     font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .login-form-panel {
+    padding: 1.5rem 1rem;
+  }
+
+  .login-form-title {
+    font-size: 1.9rem;
+  }
+
+  .login-form-label {
+    font-size: 0.95rem;
+  }
+
+  .login-form-submit-button {
+    min-height: 3.2rem;
+    font-size: 1.45rem;
   }
 }

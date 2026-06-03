@@ -236,3 +236,46 @@
         min-width: 720px;
     }
 }
+
+@media (max-width: 560px) {
+    .inventario-banner {
+        padding: 14px;
+    }
+
+    .inventario-banner__info {
+        align-items: flex-start;
+    }
+
+    .inventario-banner h1 {
+        font-size: 1.45rem;
+    }
+
+    .inventario-banner p {
+        font-size: 0.78rem;
+    }
+
+    .inventario-banner__button {
+        padding: 11px 14px;
+        font-size: 0.78rem;
+    }
+
+    .inventario-table-card {
+        margin-top: 14px;
+        padding: 16px 12px 14px;
+        border-radius: 14px;
+    }
+
+    .inventario-form {
+        width: min(100vw - 20px, 420px);
+        padding: 18px;
+    }
+
+    .inventario-form__actions {
+        flex-direction: column;
+    }
+
+    .inventario-form__save,
+    .inventario-form__cancel {
+        width: 100%;
+    }
+}
