@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import "./5.css";
+import { useState, useEffect } from 'react'
+import './Productos.css'
 
 function Productos() {
   const [categoria, setCategoria] = useState("Empaquetados");

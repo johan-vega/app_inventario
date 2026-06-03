@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import "../productos/5.css";
+import "./Clientes.css";
 
 function Clientes() {
     const [clientes, setClientes] = useState(() => {

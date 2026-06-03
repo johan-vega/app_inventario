@@ -2,9 +2,9 @@ import { useState } from "react";
 
 import Navbar from "./Navbar/Navbar";
 
-import Productos from "./components/productos/5";
+import Productos from "./components/productos/Productos";
 
-import Clientes from "./components/clientes/1";
+import Clientes from "./components/clientes/Clientes";
 
 const Inventario = () => <h2>Módulo Inventario en desarrollo</h2>;
 
