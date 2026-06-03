@@ -1,0 +1,218 @@
+:root {
+  --color-principal: #4d774e;
+  --color-secundario: #6f9e66;
+  --color-boton: #7ba36f;
+  --color-boton-hover: #00700f;
+  --color-activo: #00855d;
+
+  --color-textos: #333;
+  --color-blanco: #ffffff;
+
+  --color-fila-par: #f4f4f4;
+  --color-fila-hover: #d5ffc2;
+
+  --color-borde: #dddddd;
+
+  --fuente-principal: Arial, Helvetica, sans-serif;
+}
+
+.productos-container {
+  padding: 30px;
+  background-color: var(--color-blanco);
+}
+
+.productos-container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: var(--color-principal);
+}
+
+.categorias {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.categorias button {
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  background-color: var(--color-boton);
+  color: var(--color-blanco);
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.encabezado h1 {
+  flex: 1;
+  text-align: center;
+  margin: 20px;
+  margin-left: 190px;
+  color: var(--color-principal);
+}
+
+.btn-agregar {
+  background: #4d774e;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.categorias button:hover {
+  background-color: var(--color-boton-hover);
+}
+
+.categorias .activo {
+  background-color: var(--color-activo);
+}
+
+
+.tabla-productos {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-productos th,
+.tabla-productos td {
+  padding: 16px;
+  border-bottom: 1px solid var(--color-borde);
+  text-align: center;
+}
+
+.tabla-productos th {
+  background-color: var(--color-secundario);
+  color: var(--color-blanco);
+  font-weight: bold;
+}
+
+.tabla-productos td {
+  color: var(--color-textos);
+}
+
+
+.tabla-productos th:last-child,
+.tabla-productos td:last-child{
+    text-align:center;
+}
+
+.tabla-productos tr:nth-child(even) {
+  background-color: var(--color-fila-par);
+}
+
+.tabla-productos tr:hover {
+  background-color: var(--color-fila-hover);
+}
+
+.acciones {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-editar {
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #3498db;
+  color: white;
+  transition: 0.3s;
+}
+
+.btn-editar:hover {
+  background-color: #2980b9;
+}
+
+.btn-eliminar {
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #e74c3c;
+  color: white;
+  transition: 0.3s;
+}
+
+.btn-eliminar:hover {
+  background-color: #c0392b;
+}
+
+.encabezado{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.btn-agregar{
+    background:#4d774e;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.acciones{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+}
+
+.btn-editar{
+    background:#3498db;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.btn-eliminar{
+    background:#e74c3c;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.5);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.formulario-producto{
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    width:350px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.formulario-producto input{
+    padding:10px;
+}
+
+.botones-formulario{
+    display:flex;
+    justify-content:space-between;
+}
