@@ -1,8 +1,8 @@
-.clientes-view {
+.pedidos-view {
   min-height: 100%;
 }
 
-.clientes-banner {
+.pedidos-banner {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,53 +14,50 @@
   box-shadow: 0 8px 20px rgba(128, 165, 24, 0.18);
 }
 
-.clientes-banner__info {
+.pedidos-banner__info {
   display: flex;
   align-items: center;
   gap: 14px;
 }
 
-.clientes-banner__icon {
+.pedidos-banner__icon {
   position: relative;
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
 }
 
-.clientes-banner__head {
+.pedidos-banner__tag {
   position: absolute;
-  top: 4px;
-  left: 15px;
-  width: 18px;
-  height: 18px;
+  inset: 4px;
   border: 3px solid rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  transform: rotate(45deg);
+}
+
+.pedidos-banner__hole {
+  position: absolute;
+  top: 10px;
+  left: 11px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
+  background: #ffffff;
 }
 
-.clientes-banner__body {
-  position: absolute;
-  left: 10px;
-  right: 10px;
-  bottom: 5px;
-  height: 18px;
-  border: 3px solid rgba(255, 255, 255, 0.95);
-  border-top: none;
-  border-radius: 0 0 14px 14px;
-}
-
-.clientes-banner h1 {
+.pedidos-banner h1 {
   margin: 0 0 4px;
   font-size: 2rem;
   line-height: 1;
   text-transform: uppercase;
 }
 
-.clientes-banner p {
+.pedidos-banner p {
   margin: 0;
   font-size: 0.9rem;
   font-weight: 700;
 }
 
-.clientes-banner__button {
+.pedidos-banner__button {
   border: none;
   border-radius: 8px;
   padding: 11px 16px;
@@ -71,52 +68,80 @@
   transition: transform 0.2s ease, background 0.2s ease;
 }
 
-.clientes-banner__button:hover {
+.pedidos-banner__button:hover {
   transform: translateY(-1px);
   background: #474747;
 }
 
-.clientes-table-card {
+.pedidos-table-card {
   margin-top: 12px;
   padding: 18px 14px 16px;
   border-radius: 16px;
   background: linear-gradient(180deg, #e5e5e5 0%, #ecebea 100%);
 }
 
-.clientes-table {
+.pedidos-table {
   width: 100%;
   border-collapse: collapse;
   color: #545454;
 }
 
-.clientes-table th,
-.clientes-table td {
+.pedidos-table th,
+.pedidos-table td {
   padding: 12px 10px;
   border-bottom: 1px solid rgba(87, 87, 87, 0.25);
   text-align: center;
   font-size: 0.95rem;
 }
 
-.clientes-table th {
+.pedidos-table th {
   font-size: 0.84rem;
   font-weight: 700;
 }
 
-.clientes-table td:nth-child(2),
-.clientes-table td:nth-child(5) {
+.pedidos-table td:nth-child(2),
+.pedidos-table td:nth-child(6) {
   text-align: left;
 }
 
-.clientes-actions {
+.pedidos-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 92px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.pedidos-status--cancelado {
+  background: linear-gradient(90deg, #4d4d4d 0%, #f0382f 100%);
+}
+
+.pedidos-status--pendiente {
+  background: linear-gradient(90deg, #4d4d4d 0%, #f0df16 100%);
+}
+
+.pedidos-status--enviado {
+  background: linear-gradient(90deg, #4d4d4d 0%, #1949e7 100%);
+}
+
+.pedidos-status--entregado {
+  background: linear-gradient(90deg, #4d4d4d 0%, #5cde2d 100%);
+}
+
+.pedidos-actions {
   display: flex;
   justify-content: center;
   gap: 8px;
 }
 
-.clientes-actions__edit,
-.clientes-actions__delete,
-.clientes-form__save,
-.clientes-form__cancel {
+.pedidos-actions__view,
+.pedidos-actions__delete,
+.pedidos-form__save,
+.pedidos-form__cancel {
   border: none;
   border-radius: 999px;
   padding: 7px 12px;
@@ -125,28 +150,28 @@
   transition: filter 0.2s ease, transform 0.2s ease;
 }
 
-.clientes-actions__edit {
-  background: #7d9b3d;
+.pedidos-actions__view {
+  background: #8c37b8;
 }
 
-.clientes-actions__delete {
+.pedidos-actions__delete {
   background: #c23431;
 }
 
-.clientes-actions__edit:hover,
-.clientes-actions__delete:hover,
-.clientes-form__save:hover,
-.clientes-form__cancel:hover {
+.pedidos-actions__view:hover,
+.pedidos-actions__delete:hover,
+.pedidos-form__save:hover,
+.pedidos-form__cancel:hover {
   filter: brightness(0.95);
   transform: translateY(-1px);
 }
 
-.clientes-table__empty {
+.pedidos-table__empty {
   padding: 26px 12px;
   color: #666666;
 }
 
-.clientes-modal {
+.pedidos-modal {
   position: fixed;
   inset: 0;
   display: flex;
@@ -156,8 +181,8 @@
   z-index: 20;
 }
 
-.clientes-form {
-  width: min(420px, calc(100vw - 32px));
+.pedidos-form {
+  width: min(430px, calc(100vw - 32px));
   display: grid;
   gap: 12px;
   padding: 24px;
@@ -166,12 +191,13 @@
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
 }
 
-.clientes-form h2 {
+.pedidos-form h2 {
   margin: 0 0 6px;
   color: #4d4d4d;
 }
 
-.clientes-form input {
+.pedidos-form input,
+.pedidos-form select {
   width: 100%;
   padding: 12px 14px;
   border: 1px solid #d1d1d1;
@@ -179,40 +205,40 @@
   font-size: 0.95rem;
 }
 
-.clientes-form input:disabled {
+.pedidos-form input:disabled {
   background: #efefef;
   color: #666666;
 }
 
-.clientes-form__actions {
+.pedidos-form__actions {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
 }
 
-.clientes-form__save {
+.pedidos-form__save {
   background: #7d9b3d;
 }
 
-.clientes-form__cancel {
+.pedidos-form__cancel {
   background: #6a6a6a;
 }
 
 @media (max-width: 900px) {
-  .clientes-banner {
+  .pedidos-banner {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .clientes-banner__button {
+  .pedidos-banner__button {
     width: 100%;
   }
 
-  .clientes-table-card {
+  .pedidos-table-card {
     overflow-x: auto;
   }
 
-  .clientes-table {
+  .pedidos-table {
     min-width: 760px;
   }
 }

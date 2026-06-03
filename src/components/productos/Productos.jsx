@@ -1,68 +1,56 @@
-import { useState, useEffect } from 'react'
-import './Productos.css'
+import { useState } from "react";
+import "./Productos.css";
 
-function Productos() {
+const EMPTY_PRODUCT = {
+  codigo: "",
+  nombre: "",
+  precio: "",
+  stock: "",
+};
+
+const countProducts = (productos) =>
+  Object.values(productos).reduce(
+    (total, categoryItems) => total + categoryItems.length,
+    0
+  );
+
+function Productos({ productos, setProductos }) {
   const [categoria, setCategoria] = useState("Empaquetados");
-
-  const [productos, setProductos] = useState(() => {
-    const datosGuardados = localStorage.getItem("productos");
-
-    return datosGuardados
-      ? JSON.parse(datosGuardados)
-      : {
-        Empaquetados: [],
-        Enlatados: [],
-        Bebidas: [],
-      };
-  });
-
-  useEffect(() => {
-    localStorage.setItem(
-      "productos",
-      JSON.stringify(productos)
-    );
-  }, [productos])
-
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [modoEdicion, setModoEdicion] = useState(false);
-
-  const [productoActual, setProductoActual] = useState({
-    codigo: "",
-    nombre: "",
-    precio: "",
-    stock: "",
-  });
+  const [productoActual, setProductoActual] = useState(EMPTY_PRODUCT);
 
   const abrirAgregar = () => {
     setModoEdicion(false);
-
-    setProductoActual({
-      codigo: "",
-      nombre: "",
-      precio: "",
-      stock: "",
-    });
-
+    setProductoActual(EMPTY_PRODUCT);
     setMostrarFormulario(true);
   };
 
   const abrirEditar = (producto) => {
     setModoEdicion(true);
-    setProductoActual(producto);
+    setProductoActual({
+      codigo: producto.codigo,
+      nombre: producto.nombre,
+      precio: String(producto.precio),
+      stock: String(producto.stock),
+    });
     setMostrarFormulario(true);
+  };
+
+  const cerrarFormulario = () => {
+    setMostrarFormulario(false);
+    setProductoActual(EMPTY_PRODUCT);
   };
 
   const eliminarProducto = (codigo) => {
     setProductos((prev) => ({
       ...prev,
-      [categoria]: prev[categoria].filter(
-        (producto) => producto.codigo !== codigo
-      ),
+      [categoria]: prev[categoria].filter((producto) => producto.codigo !== codigo),
     }));
   };
 
-  const guardarProducto = (e) => {
-    e.preventDefault();
+  const guardarProducto = (event) => {
+    event.preventDefault();
 
     const productoNuevo = {
       codigo: productoActual.codigo,
@@ -74,17 +62,17 @@ function Productos() {
     if (modoEdicion) {
       setProductos((prev) => ({
         ...prev,
-        [categoria]: prev[categoria].map((p) =>
-          p.codigo === productoNuevo.codigo ? productoNuevo : p
+        [categoria]: prev[categoria].map((product) =>
+          product.codigo === productoNuevo.codigo ? productoNuevo : product
         ),
       }));
     } else {
       const existe = productos[categoria].some(
-        (p) => p.codigo === productoNuevo.codigo
+        (product) => product.codigo === productoNuevo.codigo
       );
 
       if (existe) {
-        alert("Ya existe un producto con ese código");
+        alert("Ya existe un producto con ese codigo");
         return;
       }
 
@@ -94,108 +82,121 @@ function Productos() {
       }));
     }
 
-    setMostrarFormulario(false);
+    cerrarFormulario();
   };
 
   return (
-    <div className="productos-container">
-      <div className="encabezado">
-        <h1>Gestión de Productos</h1>
+    <section className="productos-view">
+      <div className="productos-banner">
+        <div className="productos-banner__info">
+          <div className="productos-banner__icon" aria-hidden="true">
+            <span className="productos-banner__box" />
+            <span className="productos-banner__stack" />
+          </div>
+
+          <div>
+            <h1>Productos</h1>
+            <p>{countProducts(productos)} productos registrados</p>
+          </div>
+        </div>
 
         <button
-          className="btn-agregar"
+          type="button"
+          className="productos-banner__button"
           onClick={abrirAgregar}
         >
           + Agregar Producto
         </button>
       </div>
 
-      <div className="categorias">
-        <button
-          className={categoria === "Empaquetados" ? "activo" : ""}
-          onClick={() => setCategoria("Empaquetados")}
-        >
-          Empaquetados
-        </button>
+      <section className="productos-table-card">
+        <div className="productos-categorias">
+          <button
+            className={categoria === "Empaquetados" ? "activo" : ""}
+            onClick={() => setCategoria("Empaquetados")}
+          >
+            Empaquetados
+          </button>
 
-        <button
-          className={categoria === "Enlatados" ? "activo" : ""}
-          onClick={() => setCategoria("Enlatados")}
-        >
-          Enlatados
-        </button>
+          <button
+            className={categoria === "Enlatados" ? "activo" : ""}
+            onClick={() => setCategoria("Enlatados")}
+          >
+            Enlatados
+          </button>
 
-        <button
-          className={categoria === "Bebidas" ? "activo" : ""}
-          onClick={() => setCategoria("Bebidas")}
-        >
-          Bebidas
-        </button>
-      </div>
+          <button
+            className={categoria === "Bebidas" ? "activo" : ""}
+            onClick={() => setCategoria("Bebidas")}
+          >
+            Bebidas
+          </button>
+        </div>
 
-      <table className="tabla-productos">
-        <thead>
-          <tr>
-            <th>Código</th>
-            <th>Producto</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {productos[categoria].map((producto) => (
-            <tr key={producto.codigo}>
-              <td>{producto.codigo}</td>
-              <td>{producto.nombre}</td>
-              <td>S/. {producto.precio.toFixed(2)}</td>
-              <td>{producto.stock}</td>
-
-              <td>
-                <div className="acciones">
-                  <button
-                    className="btn-editar"
-                    onClick={() => abrirEditar(producto)}
-                  >
-                    Editar
-                  </button>
-
-                  <button
-                    className="btn-eliminar"
-                    onClick={() =>
-                      eliminarProducto(producto.codigo)
-                    }
-                  >
-                    Eliminar
-                  </button>
-                </div>
-              </td>
+        <table className="productos-table">
+          <thead>
+            <tr>
+              <th>Codigo</th>
+              <th>Producto</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Acciones</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {productos[categoria].map((producto) => (
+              <tr key={producto.codigo}>
+                <td>{producto.codigo}</td>
+                <td>{producto.nombre}</td>
+                <td>S/. {Number(producto.precio).toFixed(2)}</td>
+                <td>{producto.stock}</td>
+                <td>
+                  <div className="productos-actions">
+                    <button
+                      type="button"
+                      className="productos-actions__edit"
+                      onClick={() => abrirEditar(producto)}
+                    >
+                      Editar
+                    </button>
+
+                    <button
+                      type="button"
+                      className="productos-actions__delete"
+                      onClick={() => eliminarProducto(producto.codigo)}
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+
+            {productos[categoria].length === 0 && (
+              <tr>
+                <td colSpan="5" className="productos-table__empty">
+                  No hay productos registrados en esta categoria.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </section>
 
       {mostrarFormulario && (
-        <div className="modal">
-          <form
-            className="formulario-producto"
-            onSubmit={guardarProducto}
-          >
-            <h2>
-              {modoEdicion
-                ? "Editar Producto"
-                : "Agregar Producto"}
-            </h2>
+        <div className="productos-modal">
+          <form className="productos-form" onSubmit={guardarProducto}>
+            <h2>{modoEdicion ? "Editar Producto" : "Agregar Producto"}</h2>
 
             <input
               type="text"
-              placeholder="Código"
+              placeholder="Codigo"
               value={productoActual.codigo}
-              onChange={(e) =>
+              onChange={(event) =>
                 setProductoActual({
                   ...productoActual,
-                  codigo: e.target.value,
+                  codigo: event.target.value,
                 })
               }
               disabled={modoEdicion}
@@ -206,10 +207,10 @@ function Productos() {
               type="text"
               placeholder="Nombre"
               value={productoActual.nombre}
-              onChange={(e) =>
+              onChange={(event) =>
                 setProductoActual({
                   ...productoActual,
-                  nombre: e.target.value,
+                  nombre: event.target.value,
                 })
               }
               required
@@ -220,10 +221,10 @@ function Productos() {
               step="0.01"
               placeholder="Precio"
               value={productoActual.precio}
-              onChange={(e) =>
+              onChange={(event) =>
                 setProductoActual({
                   ...productoActual,
-                  precio: e.target.value,
+                  precio: event.target.value,
                 })
               }
               required
@@ -233,25 +234,24 @@ function Productos() {
               type="number"
               placeholder="Stock"
               value={productoActual.stock}
-              onChange={(e) =>
+              onChange={(event) =>
                 setProductoActual({
                   ...productoActual,
-                  stock: e.target.value,
+                  stock: event.target.value,
                 })
               }
               required
             />
 
-            <div className="botones-formulario">
-              <button type="submit">
+            <div className="productos-form__actions">
+              <button type="submit" className="productos-form__save">
                 Guardar
               </button>
 
               <button
                 type="button"
-                onClick={() =>
-                  setMostrarFormulario(false)
-                }
+                className="productos-form__cancel"
+                onClick={cerrarFormulario}
               >
                 Cancelar
               </button>
@@ -259,7 +259,7 @@ function Productos() {
           </form>
         </div>
       )}
-    </div>
+    </section>
   );
 }
 
