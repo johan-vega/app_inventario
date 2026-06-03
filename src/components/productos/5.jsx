@@ -1,29 +1,27 @@
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 import "./5.css";
 
-const Productos = () => {
+function Productos() {
   const [categoria, setCategoria] = useState("Empaquetados");
 
-  const [productos, setProductos] = useState({
-    Empaquetados: [
-      { codigo: "1001", nombre: "Galletas", precio: 3.5, stock: 50 },
-      { codigo: "1002", nombre: "Arroz", precio: 4.2, stock: 80 },
-      { codigo: "1003", nombre: "Fideos", precio: 2.8, stock: 65 },
-    ],
+  const [productos, setProductos] = useState(() => {
+    const datosGuardados = localStorage.getItem("productos");
 
-    Enlatados: [
-      { codigo: "2001", nombre: "Atún", precio: 8, stock: 30 },
-      { codigo: "2002", nombre: "Frejoles", precio: 6, stock: 25 },
-      { codigo: "2003", nombre: "Duraznos", precio: 7, stock: 20 },
-    ],
-
-    Bebidas: [
-      { codigo: "3001", nombre: "Monster", precio: 8, stock: 30 },
-      { codigo: "3002", nombre: "Coca Cola", precio: 4, stock: 45 },
-      { codigo: "3003", nombre: "Inca Kola", precio: 4, stock: 50 },
-    ],
+    return datosGuardados
+      ? JSON.parse(datosGuardados)
+      : {
+        Empaquetados: [],
+        Enlatados: [],
+        Bebidas: [],
+      };
   });
+
+  useEffect(() => {
+    localStorage.setItem(
+      "productos",
+      JSON.stringify(productos)
+    );
+  }, [productos])
 
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [modoEdicion, setModoEdicion] = useState(false);
@@ -34,15 +32,6 @@ const Productos = () => {
     precio: "",
     stock: "",
   });
-
-  const eliminarProducto = (codigo) => {
-    setProductos({
-      ...productos,
-      [categoria]: productos[categoria].filter(
-        (producto) => producto.codigo !== codigo
-      ),
-    });
-  };
 
   const abrirAgregar = () => {
     setModoEdicion(false);
@@ -59,43 +48,50 @@ const Productos = () => {
 
   const abrirEditar = (producto) => {
     setModoEdicion(true);
-
-    setProductoActual({
-      codigo: producto.codigo,
-      nombre: producto.nombre,
-      precio: producto.precio,
-      stock: producto.stock,
-    });
-
+    setProductoActual(producto);
     setMostrarFormulario(true);
+  };
+
+  const eliminarProducto = (codigo) => {
+    setProductos((prev) => ({
+      ...prev,
+      [categoria]: prev[categoria].filter(
+        (producto) => producto.codigo !== codigo
+      ),
+    }));
   };
 
   const guardarProducto = (e) => {
     e.preventDefault();
 
-    const productoFormateado = {
-      ...productoActual,
+    const productoNuevo = {
+      codigo: productoActual.codigo,
+      nombre: productoActual.nombre,
       precio: Number(productoActual.precio),
       stock: Number(productoActual.stock),
     };
 
     if (modoEdicion) {
-      setProductos({
-        ...productos,
-        [categoria]: productos[categoria].map((p) =>
-          p.codigo === productoFormateado.codigo
-            ? productoFormateado
-            : p
+      setProductos((prev) => ({
+        ...prev,
+        [categoria]: prev[categoria].map((p) =>
+          p.codigo === productoNuevo.codigo ? productoNuevo : p
         ),
-      });
+      }));
     } else {
-      setProductos({
-        ...productos,
-        [categoria]: [
-          ...productos[categoria],
-          productoFormateado,
-        ],
-      });
+      const existe = productos[categoria].some(
+        (p) => p.codigo === productoNuevo.codigo
+      );
+
+      if (existe) {
+        alert("Ya existe un producto con ese código");
+        return;
+      }
+
+      setProductos((prev) => ({
+        ...prev,
+        [categoria]: [...prev[categoria], productoNuevo],
+      }));
     }
 
     setMostrarFormulario(false);
@@ -103,7 +99,6 @@ const Productos = () => {
 
   return (
     <div className="productos-container">
-
       <div className="encabezado">
         <h1>Gestión de Productos</h1>
 
@@ -154,7 +149,7 @@ const Productos = () => {
             <tr key={producto.codigo}>
               <td>{producto.codigo}</td>
               <td>{producto.nombre}</td>
-              <td>S/. {Number(producto.precio).toFixed(2)}</td>
+              <td>S/. {producto.precio.toFixed(2)}</td>
               <td>{producto.stock}</td>
 
               <td>
@@ -168,7 +163,9 @@ const Productos = () => {
 
                   <button
                     className="btn-eliminar"
-                    onClick={() => eliminarProducto(producto.codigo)}
+                    onClick={() =>
+                      eliminarProducto(producto.codigo)
+                    }
                   >
                     Eliminar
                   </button>
@@ -252,7 +249,9 @@ const Productos = () => {
 
               <button
                 type="button"
-                onClick={() => setMostrarFormulario(false)}
+                onClick={() =>
+                  setMostrarFormulario(false)
+                }
               >
                 Cancelar
               </button>
@@ -262,6 +261,6 @@ const Productos = () => {
       )}
     </div>
   );
-};
+}
 
 export default Productos;

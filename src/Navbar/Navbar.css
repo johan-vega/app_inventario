@@ -1,0 +1,61 @@
+:root {
+    --color-sidebar: #4b4b4b;
+    --color-sidebar-hover: #5f5f5f;
+    --color-sidebar-active: #7a7a7a;
+
+    --color-texto: #ffffff;
+    --color-logo: #c3ff00;
+
+    --radio-boton: 8px;
+    --transicion: 0.3s;
+}
+
+.navbar-lateral {
+    width: 250px;
+    min-height: 100vh;
+    background-color: var(--color-sidebar);
+    color: var(--color-texto);
+    padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.navbar-logo {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.navbar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-menu li {
+    margin-bottom: 10px;
+    color: var(--color-texto);
+}
+
+.navbar-menu button {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: var(--color-texto);
+    text-align: left;
+    padding: 12px 15px;
+    border-radius: var(--radio-boton);
+    cursor: pointer;
+    font-size: 16px;
+    transition: var(--transicion);
+}
+
+.navbar-menu button:hover {
+    background-color: var(--color-sidebar-hover);
+}
+
+.navbar-menu button:active {
+    background-color: var(--color-sidebar-active);
+}

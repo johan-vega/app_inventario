@@ -2,9 +2,10 @@
   --color-principal: #4d774e;
   --color-secundario: #6f9e66;
   --color-boton: #7ba36f;
-  --color-boton-hover: #5f8a54;
+  --color-boton-hover: #00700f;
+  --color-activo: #00855d;
 
-  --color-texto: #333;
+  --color-textos: #333;
   --color-blanco: #ffffff;
 
   --color-fila-par: #f4f4f4;
@@ -73,7 +74,7 @@
 }
 
 .categorias .activo {
-  background-color: var(--color-principal);
+  background-color: var(--color-activo);
 }
 
 
@@ -96,7 +97,7 @@
 }
 
 .tabla-productos td {
-  color: var(--color-texto);
+  color: var(--color-textos);
 }
 
 

@@ -1,15 +1,62 @@
+import { useState } from "react";
+
+import Navbar from "./Navbar/Navbar";
+
+import Productos from "./components/productos/5";
+
+import Clientes from "./components/clientes/1";
+
+const Inventario = () => <h2>Módulo Inventario en desarrollo</h2>;
+
+const Pedidos = () => <h2>Módulo Pedidos en desarrollo</h2>;
+
 function Dashboard() {
-    return (
-        <section className="min-vh-100 d-flex align-items-center justify-content-center bg-light px-3">
-            <div className="text-center">
-                <p className="text-uppercase text-secondary fw-semibold mb-2">StockFlow</p>
-                <h1 className="display-4 fw-bold mb-3">Dashboard</h1>
-                <p className="lead text-secondary mb-0">
-                    Esta es la pagina de destino despues de presionar "Ingresar".
-                </p>
-            </div>
-        </section>
-    )
+  const [moduloActivo, setModuloActivo] = useState("dashboard");
+
+  const renderModulo = () => {
+    switch (moduloActivo) {
+      case "productos":
+        return <Productos />;
+
+      case "clientes":
+        return <Clientes />;
+
+      case "inventario":
+        return <Inventario />;
+
+      case "pedidos":
+        return <Pedidos />;
+
+      default:
+        return (
+          <div className="text-center">
+            <h1>Dashboard</h1>
+            <p>Bienvenido a StockFlow</p>
+          </div>
+        );
+    }
+  };
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        minHeight: "100vh",
+      }}
+    >
+      <Navbar setModuloActivo={setModuloActivo} />
+
+      <main
+        style={{
+          flex: 1,
+          padding: "20px",
+          background: "#f5f5f5",
+        }}
+      >
+        {renderModulo()}
+      </main>
+    </div>
+  );
 }
 
-export default Dashboard
+export default Dashboard;
